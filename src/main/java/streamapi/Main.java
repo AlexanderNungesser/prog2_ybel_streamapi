@@ -2,6 +2,7 @@ package streamapi;
 
 import java.io.InputStream;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /** Starter for the stream api task. */
 public class Main {
@@ -33,7 +34,8 @@ public class Main {
     /**
      * Task I: Students.
      *
-     * <p>Calculate the total credits earned by all students.
+     * <p>
+     * Calculate the total credits earned by all students.
      *
      * @param studentList List of students
      * @return Sum of credit points of all students
@@ -46,29 +48,24 @@ public class Main {
     /**
      * Task II: Set of ECTS of all IFM students.
      *
-     * <p>Identify the different credit points of all IFM students.
+     * <p>
+     * Identify the different credit points of all IFM students.
      *
      * @param studentList List of students
      * @return Set of credit points of all IFM students
      */
     public static Set<Integer> ifmCps(List<Student> studentList) {
-        // TODO
-        Set<Integer> result = new HashSet<>();
-        Integer i = 0;
-        for (Student v : studentList) {
-            if (v.isIFM()) {
-                i = v.cps();
-                result.add(i);
-            }
-        }
-
-        return result;
+        return studentList.stream()
+                .filter(Student::isIFM)
+                .map(Student::cps)
+                .collect(Collectors.toSet());
     }
 
     /**
      * Task III: Random.
      *
-     * <p>Calculate ten random integers between 0 and 10.
+     * <p>
+     * Calculate ten random integers between 0 and 10.
      *
      * @return List of ten random integers (between 0 and 10)
      */
@@ -80,7 +77,9 @@ public class Main {
     /**
      * Task IV: Open resources.
      *
-     * <p>Open the file specified by the {@code path} parameter. This file is located in the
+     * <p>
+     * Open the file specified by the {@code path} parameter. This file is located
+     * in the
      * resources folder of the project.
      *
      * @param path Name of the file to be accessed within the resource folder.
@@ -94,8 +93,11 @@ public class Main {
     /**
      * Task V: Read resources.
      *
-     * <p>Read all lines from the resource file (specified by the {@code path} parameter). Merge all
-     * lines that start with the letter "a" and are at least two characters long. The lines are to
+     * <p>
+     * Read all lines from the resource file (specified by the {@code path}
+     * parameter). Merge all
+     * lines that start with the letter "a" and are at least two characters long.
+     * The lines are to
      * be separated in the resulting string by a line-end character {@code "\n"}.
      *
      * @param path Name of the file to be accessed within the resource folder
