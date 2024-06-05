@@ -82,7 +82,7 @@ public class Main {
      * @return An open {@link InputStream} for the resource file
      */
     private static InputStream getResourceAsStream(String path) {
-        return Main.class.getClassLoader().getResourceAsStream("streamapi/" + path);
+        return Main.class.getResourceAsStream(path);
     }
 
     /**
